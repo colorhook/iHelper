@@ -11,8 +11,7 @@ package com.koubei.ihelper.context
 	import org.robotlegs.mvcs.Context;
 	import org.robotlegs.mvcs.SignalContext;
 	
-	public class ApplicationContext extends SignalContext
-	{
+	public class ApplicationContext extends SignalContext{
 
 		/**
 		 * The Startup Hook
@@ -32,7 +31,6 @@ package com.koubei.ihelper.context
 		 */ 
 		protected function initializeModel():void{
 			injector.mapSingleton(ApplicationModel);
-			injector.mapSingleton(AutoUpdateSignal);
 			/**/injector.mapSingletonOf(ILogService,NullLogService);
 			//*/injector.mapSingletonOf(ILogService,LogService);
 		}
@@ -43,27 +41,21 @@ package com.koubei.ihelper.context
 		protected function initializeController():void{
 			commandMap.mapEvent(ContextEvent.STARTUP, StartupCommand, ContextEvent, true);
 		}
-		
+		/**
+		 * initialize signal
+		 * map Signal and Command
+		 */ 
 		protected function initializeSignal():void{
-			signalCommandMap.mapSignalClass(AutoUpdateSignal, AutoUpdateCommand);
+			signalCommandMap.mapSignalClass(AutoUpdateSignal, AutoUpdateCommand, true);
+			signalCommandMap.mapSignalClass(UploadSignal, UploadCommand);
 		}
 		/**
 		 * initialize view
 		 * map View and Mediator
 		 */ 
 		protected function initializeView():void{
-			
 			mediatorMap.mapView(ApplicationView, ApplicationViewMediator);
-			
-			
 		}
-		/**
-		 * initialize twitter service commands
-		 * If I want to get a user data or publish a tweet to twitter.com, All I need to do is dispatch a 
-		 * TwitterServiceEvent on a Meditor
-		 * @see TwitterServiceEvent
-		 * @see TwitterCommand
-		 */ 
 		
 	}
 }

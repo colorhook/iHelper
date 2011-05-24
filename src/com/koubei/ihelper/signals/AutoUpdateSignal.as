@@ -4,9 +4,9 @@ package com.koubei.ihelper.signals
 	
 	public class AutoUpdateSignal extends Signal
 	{
-		public function AutoUpdateSignal(...parameters)
+		public function AutoUpdateSignal()
 		{
-			super(parameters);
+			super();
 		}
 	}
 }
