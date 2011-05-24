@@ -12,10 +12,9 @@ package com.koubei.ihelper.controller
 	import flash.filesystem.File;
 	import flash.net.URLRequest;
 	
-	import flex.lang.reflect.Field;
 	
 	import org.robotlegs.mvcs.Command;
-	
+
 	public class UploadCommand extends Command
 	{
 		[Inject]public var uploadSignal:UploadSignal;

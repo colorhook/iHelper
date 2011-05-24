@@ -8,6 +8,7 @@ package com.koubei.ihelper.model
 		public var updateURL:String = "";
 		public var uploadFieldName:String = "uploadFile";
 		public var uploadEndpoint:String = "http://www.koubei.com/common/marlineup.html";
+		
 		public function ApplicationModel()
 		{
 			super();

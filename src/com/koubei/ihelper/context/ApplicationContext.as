@@ -31,7 +31,7 @@ package com.koubei.ihelper.context
 		 */ 
 		protected function initializeModel():void{
 			injector.mapSingleton(ApplicationModel);
-			/**/injector.mapSingletonOf(ILogService,NullLogService);
+			/*/injector.mapSingletonOf(ILogService,NullLogService);
 			//*/injector.mapSingletonOf(ILogService,LogService);
 		}
 		/**
@@ -47,6 +47,8 @@ package com.koubei.ihelper.context
 		 */ 
 		protected function initializeSignal():void{
 			signalCommandMap.mapSignalClass(AutoUpdateSignal, AutoUpdateCommand, true);
+			signalCommandMap.mapSignalClass(LoadSpringSignal, LoadSpringCommand, true);
+			signalCommandMap.mapSignalClass(FileSelectedSignal, OpenImageCommand);
 			signalCommandMap.mapSignalClass(UploadSignal, UploadCommand);
 		}
 		/**

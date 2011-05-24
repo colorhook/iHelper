@@ -9,6 +9,7 @@ package com.koubei.ihelper.controller{
 	
 	import com.koubei.ihelper.services.ILogService;
 	import com.koubei.ihelper.signals.AutoUpdateSignal;
+	import com.koubei.ihelper.signals.LoadSpringSignal;
 	
 	import org.robotlegs.mvcs.Command;
 
@@ -16,10 +17,12 @@ package com.koubei.ihelper.controller{
 		
 		[Inject]public var logService:ILogService;
 		[Inject]public var autoUpdateSignal:AutoUpdateSignal;
+		[Inject]public var loadSpringSignal:LoadSpringSignal;
 		
 		override public function execute():void{
 			logService.info("StartupCommand execute");
 			//autoUpdateSignal.dispatch();
+			loadSpringSignal.dispatch();
 		}
 		
 		
