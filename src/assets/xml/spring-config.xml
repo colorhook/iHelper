@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spring-config>
+ 
+	<beans>
+		<bean id="appModel">
+			<property name="updateURL" value="MyUpdateURL"/>
+			<property name="uploadFieldName" value="uploadFile"/>
+			<property name="uploadEndpoint" value="http://www.koubei.com/common/marlineup.html"/>
+		</bean>
+	</beans>
+ 
+</spring-config>
