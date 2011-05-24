@@ -6,10 +6,8 @@ package com.koubei.ihelper.signals{
 	
 	public class UploadSignal extends Signal{
 		
-		public var file:File;
-		
-		public function UploadSignal(file:File){
-			this.file = file;
+		public function UploadSignal(){
+			super(File);
 		}
 	}
 }

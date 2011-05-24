@@ -21,10 +21,10 @@ package com.koubei.ihelper.controller
 		[Inject]public var uploadSignal:UploadSignal;
 		[Inject]public var appModel:ApplicationModel;
 		[Inject]public var logService:ILogService;
+		[Inject]public var file:File;
 		
 		public override function execute():void
 		{
-			var file:File = uploadSignal.file;
 			var request:URLRequest = new URLRequest(appModel.uploadEndpoint);
 			addEventListeners(file);
 			file.upload(request, appModel.uploadFieldName);
