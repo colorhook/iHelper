@@ -2,6 +2,7 @@ package com.koubei.ihelper.controller
 {
 	import cmodule.zaail.CLibInit;
 	
+	import com.koubei.ihelper.model.ImageModel;
 	import com.koubei.ihelper.services.ILogService;
 	import com.koubei.ihelper.signals.FileSelectedSignal;
 	import com.zaalabs.zaail.ZaaILInterface;
@@ -23,14 +24,21 @@ package com.koubei.ihelper.controller
 		
 		[Inject]
 		public var logService:ILogService;
-		
+		[Inject]
+		public var imageModel:ImageModel;
+		[Inject]
+		public var files:Array;
 		
 		public override function execute():void{
-			var file : File;
-			var stream : FileStream;
-			var ba : ByteArray;
-			
-			//if(event.files && event.files.length > 0)
+			logService.info("[OpenImageCommand] execute");
+			var items:Array = [];
+			for(var i:uint = 0, l:uint = files.length; i < l ;i++){
+				var bmd:BitmapData = getBitmapDataByFile(files[i]);
+				if(bmd){
+					items.push({file:files[i], bitmapData: bmd});
+				}
+			}
+			imageModel.addItems(items);
 		}
 		
 		private function getBitmapDataByFile(file:File):BitmapData{
@@ -40,7 +48,6 @@ package com.koubei.ihelper.controller
 			stream.readBytes(ba, 0, stream.bytesAvailable);
 			stream.close();
 			loader.supplyFile(file.name, ba);
-			
 			lib.ilInit();
 			lib.ilOriginFunc(ZaaILInterface.IL_ORIGIN_UPPER_LEFT);
 			lib.ilEnable(ZaaILInterface.IL_ORIGIN_SET);

@@ -59,11 +59,9 @@
 		<!-- Whether the user can resize the window. Optional. Default true. -->
 		<!-- <resizable></resizable> -->
 
-		<!-- The window's initial width in pixels. Optional. -->
-		<!-- <width></width> -->
+		 <width>720</width>
 
-		<!-- The window's initial height in pixels. Optional. -->
-		<!-- <height></height> -->
+		<height>480</height>
 
 		<!-- The window's initial x position. Optional. -->
 		<!-- <x></x> -->
@@ -71,8 +69,8 @@
 		<!-- The window's initial y position. Optional. -->
 		<!-- <y></y> -->
 
-		<!-- The window's minimum size, specified as a width/height pair in pixels, such as "400 200". Optional. -->
-		<!-- <minSize></minSize> -->
+
+		<minSize>400 200</minSize>
 
 		<!-- The window's initial maximum size, specified as a width/height pair in pixels, such as "1600 1200". Optional. -->
 		<!-- <maxSize></maxSize> -->

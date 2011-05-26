@@ -1,7 +1,4 @@
 /* CSS file */
-global{
-
-}
 Application
 {
 	backgroundAlpha:0;
@@ -306,18 +303,4 @@ ButtonBar {
 	quality:3;
 	alpha: 0.5;
 	inner: true;
-}
-
-/****************************************************************************************************************
-                                             FONTS                                                              *
-*****************************************************************************************************************
-*/
-@font-face {
-   src:url("assets/fonts/lucidaGrande.swf");
-   fontFamily: "Lucida Grande";
-}
-@font-face {
-   src:url("assets/fonts/lucidaGrande.swf");
-   fontFamily: "Lucida Grande";
-   fontWeight:bold;
 }

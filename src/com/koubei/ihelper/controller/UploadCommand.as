@@ -50,14 +50,13 @@ package com.koubei.ihelper.controller
 		
 		private function onUploadComplete(event:DataEvent):void{
 			removeEventListeners(event.target as File);
+			logService.info(event.data);
 			logService.info("[UploadCommand]upload complete"+event.target.toString());
 		}
 		private function onUploadStart(event:Event):void{
-			removeEventListeners(event.target as File);
 			logService.info("[UploadCommand]upload start"+event.target.toString());
 		}
 		private function onUploaderProgress(event:ProgressEvent):void{
-			removeEventListeners(event.target as File);
 			logService.info("[UploadCommand]upload progress"+event.target.toString());
 		}
 		private function onUploadCancel(event:Event):void{

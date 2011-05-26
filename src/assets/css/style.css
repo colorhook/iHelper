@@ -1,0 +1,21 @@
+global{
+	fontFamily: "Verdana";
+}
+
+/*button style*/
+.closeButton {
+	up-skin     :   Embed("/../assets/images/close.png");
+	over-skin   :   Embed("/../assets/images/close.png");
+	down-skin   :   Embed("/../assets/images/close.png");
+}
+
+.minimizeButton {
+	up-skin         :       Embed("/../assets/images/min.png");
+	over-skin       :       Embed("/../assets/images/min.png");
+	down-skin       :       Embed("/../assets/images/min.png");
+}
+.maximizeButton {
+	up-skin         :       Embed("/../assets/images/max.png");
+	over-skin       :       Embed("/../assets/images/max.png");
+	down-skin       :       Embed("/../assets/images/max.png");
+}

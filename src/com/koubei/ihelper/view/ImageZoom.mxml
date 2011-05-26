@@ -3,13 +3,12 @@
     xmlns:flash.filters="flash.filters.*"     
     horizontalScrollPolicy="off" 
     verticalScrollPolicy="off"
-    mouseWheel="onMouseWheel(event)" 
-    creationComplete="onCreationComplete()">
+    mouseWheel="onMouseWheel(event)">
     
     <mx:Script>
     <![CDATA[
 
-        import mx.core.FlexGlobals;
+        
         import mx.utils.Base64Encoder;
         
         public static const EVENT_SCALE_UPDATED:String = "scaleUpdated";
@@ -38,10 +37,7 @@
                 
         [Bindable]private var _source:Object = null;
         
-        private function onCreationComplete():void 
-        {
-            FlexGlobals.topLevelApplication.addEventListener(MouseEvent.MOUSE_UP, onApplicationMouseUp);
-        }
+    
         
         private function onApplicationMouseUp(event:MouseEvent):void 
         {

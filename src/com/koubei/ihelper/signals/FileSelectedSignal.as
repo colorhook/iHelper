@@ -5,7 +5,7 @@ package com.koubei.ihelper.signals
 	public class FileSelectedSignal extends Signal
 	{
 		public function FileSelectedSignal(){
-			super();
+			super(Array);
 		}
 	}
 }

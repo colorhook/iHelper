@@ -12,6 +12,7 @@
 						xmlns:view="com.koubei.ihelper.view.*">
 
 	<mx:Style source="assets/css/Main.css" />
-	<view:ApplicationView/>
+	<mx:Style source="assets/css/style.css" />
+	<view:ApplicationView width="100%" height="100%"/>
 	<context:ApplicationContext contextView="{this}"/>
 </mx:WindowedApplication>

@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" 
-		  layout="absolute" width="100%" height="100%"
-		  title="口碑网图片助手">
-	<mx:Button label="选择图片" id="browserButton"/>
-</mx:Panel>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+		   xmlns:view="com.koubei.ihelper.view.*">
+	
+	<mx:Panel layout="horizontal" width="100%" height="100%" 
+			  paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0"
+			  title="口碑网图片助手">
+		
+		<view:ImageList width="100" height="100%"/>
+		<view:ImageZoom width="100%" height="100%" backgroundColor="0xf00" backgroundAlpha="0.5"/>
+	</mx:Panel>
+	<view:ToolBar width="100%" height="40" x="0" y="0"/>
+	<view:ActionBar width="100%" y="5"/>
+</mx:Canvas>
+

@@ -1,0 +1,27 @@
+@font-face {
+	src: url("/../assets/fonts/fonts.swf");
+	fontFamily: "Clean Pro";
+	fontWeight: normal;
+	fontStyle: normal;
+}
+
+@font-face {
+	src: url("/../assets/fonts/fonts.swf");
+	fontFamily: "Clean Pro";
+	fontWeight: bold;
+	fontStyle: normal;
+}
+
+@font-face
+{
+	src: url("/../assets/fonts/fonts.swf");
+	fontFamily: "Clean Pro SmBd";
+	fontWeight: normal;
+	fontStyle: normal;
+}
+
+@font-face {
+	src: url("/../assets/fonts/fonts.swf");
+	fontFamily: "Clean Pro SmBd SmCn";
+	fontWeight: normal;
+}
