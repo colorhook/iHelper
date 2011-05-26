@@ -47,9 +47,14 @@ package com.koubei.ihelper.utils
 		public static function getBitmapDataByFile(file:File):BitmapData{
 			var stream:FileStream = new FileStream();
 			var ba:ByteArray = new ByteArray();
-			stream.open(file, FileMode.READ);
-			stream.readBytes(ba, 0, stream.bytesAvailable);
-			stream.close();
+			try{
+				stream.open(file, FileMode.READ);
+				stream.readBytes(ba, 0, stream.bytesAvailable);
+			}catch(error:Error){
+			}finally{
+				stream.close();
+			}
+			
 			loader.supplyFile(file.name, ba);
 			lib.ilInit();
 			lib.ilOriginFunc(ZaaILInterface.IL_ORIGIN_UPPER_LEFT);
