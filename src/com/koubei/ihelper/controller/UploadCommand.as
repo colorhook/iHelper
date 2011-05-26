@@ -1,9 +1,14 @@
 package com.koubei.ihelper.controller
 {
 	import com.koubei.ihelper.model.ApplicationModel;
+	import com.koubei.ihelper.model.OptionModel;
 	import com.koubei.ihelper.services.ILogService;
+	import com.koubei.ihelper.signals.FileUploadedSignal;
 	import com.koubei.ihelper.signals.UploadSignal;
+	import com.koubei.ihelper.utils.FileUtils;
+	import com.koubei.ihelper.utils.ImageUtils;
 	
+	import flash.display.BitmapData;
 	import flash.events.DataEvent;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -11,7 +16,7 @@ package com.koubei.ihelper.controller
 	import flash.events.SecurityErrorEvent;
 	import flash.filesystem.File;
 	import flash.net.URLRequest;
-	
+	import flash.utils.ByteArray;
 	
 	import org.robotlegs.mvcs.Command;
 
@@ -19,17 +24,31 @@ package com.koubei.ihelper.controller
 	{
 		[Inject]public var uploadSignal:UploadSignal;
 		[Inject]public var appModel:ApplicationModel;
+		[Inject]public var optionModel:OptionModel
 		[Inject]public var logService:ILogService;
-		[Inject]public var file:File;
+		[Inject]public var bitmapData:BitmapData;
+		[Inject]public var filename:String;
+		
+		[Inject]public var fileUploadedSignal:FileUploadedSignal;
 		
 		public override function execute():void
 		{
+			var file:File = generateTempFile(filename);
 			var request:URLRequest = new URLRequest(appModel.uploadEndpoint);
 			addEventListeners(file);
 			file.upload(request, appModel.uploadFieldName);
 			logService.info("[UploadCommand]start upload"+file.toString());
 		}
 		
+		private function generateTempFile(filename:String):File{
+			var bytearray:ByteArray;
+			if(optionModel.jpegFormat){
+				bytearray = ImageUtils.toJPEG(bitmapData, optionModel.jpegQuality);
+			}else{
+				bytearray = ImageUtils.toPNG(bitmapData);
+			}
+			return FileUtils.save(filename, bytearray);
+		}
 		private function addEventListeners(file:File):void{
 			file.addEventListener(DataEvent.UPLOAD_COMPLETE_DATA, onUploadComplete);
 			file.addEventListener(Event.CANCEL, onUploadCancel);
@@ -46,30 +65,33 @@ package com.koubei.ihelper.controller
 			file.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, onSecurityError);
 			file.removeEventListener(Event.OPEN, onUploadStart);
 			file.removeEventListener(ProgressEvent.PROGRESS, onUploaderProgress);
+			try{
+				file.deleteFile();
+			}catch(error:Error){}
 		}
 		
 		private function onUploadComplete(event:DataEvent):void{
 			removeEventListeners(event.target as File);
-			logService.info(event.data);
-			logService.info("[UploadCommand]upload complete"+event.target.toString());
+			fileUploadedSignal.dispatch(event.data);
+			logService.info("[UploadCommand]upload complete: "+event.data);
 		}
 		private function onUploadStart(event:Event):void{
-			logService.info("[UploadCommand]upload start"+event.target.toString());
+			logService.info("[UploadCommand]upload start: "+event.target.toString());
 		}
 		private function onUploaderProgress(event:ProgressEvent):void{
-			logService.info("[UploadCommand]upload progress"+event.target.toString());
+			logService.info("[UploadCommand]upload progress: "+event.bytesLoaded +"/"+event.bytesLoaded);
 		}
 		private function onUploadCancel(event:Event):void{
 			removeEventListeners(event.target as File);
-			logService.info("[UploadCommand]upload cancel"+event.target.toString());
+			logService.info("[UploadCommand]upload cancel: "+event.target.toString());
 		}
 		private function onSecurityError(event:SecurityErrorEvent):void{
 			removeEventListeners(event.target as File);
-			logService.info("[UploadCommand]upload security error"+event.target.toString());
+			logService.info("[UploadCommand]upload security error: "+event.text);
 		}
 		private function onIOError(event:IOErrorEvent):void{
 			removeEventListeners(event.target as File);
-			logService.info("[UploadCommand]upload io error"+event.target.toString());
+			logService.info("[UploadCommand]upload io error: "+event.errorID);
 		}
 	}
 }

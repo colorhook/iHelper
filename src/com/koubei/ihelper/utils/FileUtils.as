@@ -80,7 +80,8 @@ package com.koubei.ihelper.utils
 		public static function getFileByPath(path:String):File{
 			return new File(File.applicationDirectory.resolvePath(path).nativePath);
 		}
-		public static function save(path:String, bytes:ByteArray):void{
+		
+		public static function save(path:String, bytes:ByteArray):File{
 			var file:File =getFileByPath(path);
 			var fileStream:FileStream = new FileStream();
 			try{
@@ -90,6 +91,8 @@ package com.koubei.ihelper.utils
 			}finally {
 				fileStream.close();
 			}
+			return file;
 		}
+
 	}
 }

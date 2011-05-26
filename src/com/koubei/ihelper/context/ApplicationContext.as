@@ -32,6 +32,8 @@ package com.koubei.ihelper.context
 		protected function initializeModel():void{
 			injector.mapSingleton(ApplicationModel);
 			injector.mapSingleton(ImageModel);
+			injector.mapSingleton(OptionModel);
+			injector.mapSingleton(MemeryTalker);
 			injector.mapSingleton(ImageModelChangeSignal);
 			injector.mapSingleton(ImageSelectedChangeSignal);
 			/*/injector.mapSingletonOf(ILogService,NullLogService);
@@ -53,6 +55,7 @@ package com.koubei.ihelper.context
 			signalCommandMap.mapSignalClass(LoadSpringSignal, LoadSpringCommand, true);
 			signalCommandMap.mapSignalClass(FileSelectedSignal, OpenImageCommand);
 			signalCommandMap.mapSignalClass(UploadSignal, UploadCommand);
+			signalCommandMap.mapSignalClass(FileUploadedSignal, FileUploadedCommand);
 		}
 		/**
 		 * initialize view

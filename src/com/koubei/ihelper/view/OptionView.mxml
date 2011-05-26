@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml">
+	<mx:CheckBox id="pngCheckBox"  label="PNG"/>
+	<mx:CheckBox id="jpgCheckBox" label="JPG" selected="true"/>
+	<mx:NumericStepper id="jpgQualityStepper" minimum="1" maximum="100" stepSize="5"/>
+	<mx:HSlider id="slider" minimum="0.1" maximum="1"/>
+	<mx:Label text="文件大小："/>
+	<mx:Label text="文件尺寸：高  宽"/>
+</mx:HBox>

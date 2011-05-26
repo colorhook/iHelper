@@ -1,5 +1,6 @@
 package com.koubei.ihelper.signals{
 	
+	import flash.display.BitmapData;
 	import flash.filesystem.File;
 	
 	import org.osflash.signals.Signal;
@@ -7,7 +8,7 @@ package com.koubei.ihelper.signals{
 	public class UploadSignal extends Signal{
 		
 		public function UploadSignal(){
-			super(File);
+			super(BitmapData, String);
 		}
 	}
 }
