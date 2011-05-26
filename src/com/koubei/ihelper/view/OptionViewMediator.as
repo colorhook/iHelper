@@ -5,18 +5,17 @@ package com.koubei.ihelper.view
 	
 	import flash.events.Event;
 	
-	import mx.events.NumericStepperEvent;
+	import mx.controls.RadioButtonGroup;
 	import mx.events.SliderEvent;
 	
-	import org.osflash.signals.natives.NativeSignal;
 	import org.robotlegs.mvcs.Mediator;
 	
 	public class OptionViewMediator extends Mediator
 	{
 		
-		[Injector]public var logService:ILogService;
-		[Injector]public var view:OptionView;
-		[Injector]public var opitonModel:OptionModel;
+		[Inject]public var logService:ILogService;
+		[Inject]public var view:OptionView;
+		[Inject]public var optionModel:OptionModel;
 		
 		public function OptionViewMediator()
 		{
@@ -24,32 +23,30 @@ package com.koubei.ihelper.view
 		}
 		
 		override public function onRegister():void{
-			eventMap.mapListener(view.pngCheckBox, Event.CHANGE, onCheckBoxChanged);
-			eventMap.mapListener(view.jpgCheckBox, Event.CHANGE, onCheckBoxChanged);
-			eventMap.mapListener(view.jpgQualityStepper, NumericStepperEvent.CHANGE, onJPEGQualityChanged);
+			eventMap.mapListener(view.imageFormat, Event.CHANGE, onRadioGroupChanged);
+			eventMap.mapListener(view.jpgQualitySlider, SliderEvent.CHANGE, onJPEGQualityChanged);
 			eventMap.mapListener(view.slider, SliderEvent.CHANGE, onSliderChanged);
-			view.jpgQualityStepper.value = opitonModel.jpegQuality;
+			view.jpgQualitySlider.value = optionModel.jpegQuality;
 			view.slider.value = optionModel.scale;
 			logService.info("[OptionViewMediator] onRegister");
 		}
 		
 		
-		private function onCheckBoxChanged(event:Event):void{
-			if(view.pngCheckBox.selected){
-				view.jpgCheckBox.selected = false;
-				view.jpgQualityStepper.enabled = false;
+		private function onRadioGroupChanged(event:Event):void{
+			if(view.imageFormat.selectedValue == "PNG"){
+				view.jpgQualitySlider.enabled = false;
+				optionModel.jpegFormat = false;
 			}else{
-				view.pngCheckBox.selected = false;
-				view.jpgQualityStepper.enabled = true;
+				view.jpgQualitySlider.enabled = true;
+				optionModel.jpegFormat = true;
 			}
-			opitonModel.jpegFormat = !view.pngCheckBox.selected;
 		}
 		
-		private function onJPEGQualityChanged(event:NumericStepperEvent):void{
-			opitonModel.jpegQuality = event.value;
+		private function onJPEGQualityChanged(event:SliderEvent):void{
+			optionModel.jpegQuality = event.value;
 		}
 		private function onSliderChanged(event:SliderEvent):void{
-			opitonModel.scale = event.value;
+			optionModel.scale = event.value;
 		}
 	}
 }

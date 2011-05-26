@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+		verticalScrollPolicy="off" horizontalScrollPolicy="off">
+	<mx:Canvas id="maskCanvas" 
+			   backgroundColor="#FF0000" 
+			   width="100%" height="100%" />
+	<mx:Image id="image" mask="{maskCanvas}"/>
+	<mx:Script>
+		<![CDATA[
+			import com.koubei.ihelper.utils.ImageUtils;
+			
+			private var _scale:Number=1;
+			private var _bitmapData:BitmapData;
+			private var _maxImageWidth:Number;
+			private var _maxImageHeight:Number;
+			
+			public function set bitmapData(value:BitmapData):void{
+				_bitmapData = value
+				updateImage();
+			}
+			
+			public function set scale(v:Number):void{
+				if(v<0.001){
+					v = 0.001;
+				}else if(v>1){
+					v = 1;
+				}
+				if(v == _scale){
+					return;
+				}
+				_scale = v;
+				updateImage();
+			}
+			
+			public function set maxImageWidth(value:Number):void{
+				_maxImageWidth = value;
+				updateImage();
+			}
+			public function set maxImageHeight(value:Number):void{
+				_maxImageHeight = value;
+				updateImage();
+			}
+		
+			protected function updateImage():void{
+				if(!_bitmapData){
+					return;
+				}
+				var s:Number = _scale;
+				if(_maxImageHeight>0){
+					s = Math.min(s, _maxImageHeight/_bitmapData.height);
+				}
+				if(_maxImageWidth>0){
+					s = Math.min(s, _maxImageWidth/_bitmapData.width);
+				}
+				var bmd:BitmapData = ImageUtils.scaleImage(_bitmapData, s);
+				this.image.x = (this.width - bmd.width)/2;
+				this.image.y = (this.height - bmd.height)/2;
+				this.image.width = bmd.width;
+				this.image.height = bmd.height;
+				this.image.source = new Bitmap(bmd, "auto", true);
+			}
+			
+		]]>
+	</mx:Script>
+</mx:Canvas>
