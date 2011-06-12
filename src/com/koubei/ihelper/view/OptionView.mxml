@@ -4,8 +4,10 @@
 	</mx:RadioButtonGroup>
 	<mx:RadioButton value="PNG" groupName="imageFormat" label="PNG"/>
 	<mx:RadioButton value="JPG" groupName="imageFormat" label="JPG"  selected="true"/>
-	<mx:HSlider id="jpgQualitySlider" minimum="1" maximum="100" width="80" labelOffset="10"/>
-	<mx:HSlider id="slider" minimum="0.1" maximum="1" width="80" labelOffset="10"/>
+	<mx:Button id="rotateL" label="向左旋转"/>
+	<mx:Button id="rotateR" label="向右旋转"/>
 	<mx:Label text="文件大小："/>
-	<mx:Label text="文件尺寸：高  宽"/>
+	<mx:Label id="fileSizeLabel"/>
+	<mx:Label text="文件尺寸："/>
+	<mx:Label id="imageSizeLabel"/>
 </mx:HBox>

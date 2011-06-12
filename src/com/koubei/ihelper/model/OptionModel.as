@@ -4,7 +4,6 @@ package com.koubei.ihelper.model
 	
 	import org.robotlegs.mvcs.Actor;
 	
-
 	public class OptionModel extends Actor
 	{
 		public function OptionModel(){
@@ -15,6 +14,7 @@ package com.koubei.ihelper.model
 		private var _jpegFormat:Boolean = true;
 		private var _jpegQuality:Number = 80;
 		private var _scale:Number = 0.8;
+		private var _rotation:Number = 0;
 		
 		public function set jpegFormat(b:Boolean):void{
 			if(_jpegFormat == b){
@@ -48,5 +48,16 @@ package com.koubei.ihelper.model
 		public function  get scale():Number{
 			return _scale;
 		}
+		public function set rotation(value:Number):void{
+			if(_rotation == value){
+				return;
+			}
+			_rotation= value;
+			optionChangedSignal.dispatch();
+		}
+		public function  get rotation():Number{
+			return _rotation;
+		}
+		
 	}
 }

@@ -4,6 +4,7 @@ package com.koubei.ihelper.view
 	import com.koubei.ihelper.services.ILogService;
 	
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	
 	import mx.controls.RadioButtonGroup;
 	import mx.events.SliderEvent;
@@ -24,29 +25,23 @@ package com.koubei.ihelper.view
 		
 		override public function onRegister():void{
 			eventMap.mapListener(view.imageFormat, Event.CHANGE, onRadioGroupChanged);
-			eventMap.mapListener(view.jpgQualitySlider, SliderEvent.CHANGE, onJPEGQualityChanged);
-			eventMap.mapListener(view.slider, SliderEvent.CHANGE, onSliderChanged);
-			view.jpgQualitySlider.value = optionModel.jpegQuality;
-			view.slider.value = optionModel.scale;
+			eventMap.mapListener(view.rotateL, MouseEvent.CLICK, onRotateLClicked);
+			eventMap.mapListener(view.rotateR, MouseEvent.CLICK, onRotateRClicked);
 			logService.info("[OptionViewMediator] onRegister");
 		}
-		
-		
 		private function onRadioGroupChanged(event:Event):void{
 			if(view.imageFormat.selectedValue == "PNG"){
-				view.jpgQualitySlider.enabled = false;
 				optionModel.jpegFormat = false;
 			}else{
-				view.jpgQualitySlider.enabled = true;
 				optionModel.jpegFormat = true;
 			}
 		}
-		
-		private function onJPEGQualityChanged(event:SliderEvent):void{
-			optionModel.jpegQuality = event.value;
+		private function onRotateLClicked(event:MouseEvent):void{
+			optionModel.rotation -= 90;
 		}
-		private function onSliderChanged(event:SliderEvent):void{
-			optionModel.scale = event.value;
+		private function onRotateRClicked(event:MouseEvent):void{
+			optionModel.rotation = 90;
 		}
+
 	}
 }

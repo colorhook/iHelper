@@ -36,6 +36,7 @@ package com.koubei.ihelper.context
 			injector.mapSingleton(MemeryTalker);
 			injector.mapSingleton(ImageModelChangeSignal);
 			injector.mapSingleton(ImageSelectedChangeSignal);
+			injector.mapSingleton(ImageLoadedSignal);
 			injector.mapSingleton(OptionChangedSignal);
 			/*/injector.mapSingletonOf(ILogService,NullLogService);
 			//*/injector.mapSingletonOf(ILogService,LogService);
@@ -64,6 +65,7 @@ package com.koubei.ihelper.context
 		 */ 
 		protected function initializeView():void{
 			mediatorMap.mapView(ApplicationView, ApplicationViewMediator);
+			mediatorMap.mapView(ImageTile, ImageTileMediator);
 			mediatorMap.mapView(ImageList, ImageListMediator);
 			mediatorMap.mapView(ImageZoom, ImageZoomMediator);
 			mediatorMap.mapView(ToolBar, ToolBarMediator);

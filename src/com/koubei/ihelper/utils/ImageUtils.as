@@ -15,10 +15,10 @@ package com.koubei.ihelper.utils
 			throw new Error("ImageUtils is a static class");
 		}
 		
-		public static function scaleImage(bitmapData:BitmapData, scale:Number = 1):BitmapData{
+		public static function scaleImage(bitmapData:BitmapData, scale:Number = 1, angle:Number = 0):BitmapData{
 			var matrix:Matrix = new Matrix();
 			matrix.scale(scale, scale);
-			
+			matrix.rotate(angle);
 			var bmd:BitmapData = new BitmapData(bitmapData.width * scale,
 				bitmapData.height * scale, true, 0x000000);
 			bmd.draw(bitmapData, matrix, null, null, null, true);

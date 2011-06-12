@@ -6,12 +6,7 @@
 			  paddingLeft="0" paddingRight="0" paddingBottom="0" paddingTop="0"
 			  title="口碑网图片助手">
 		
-		<view:ImageList width="100" height="100%"/>
-		<mx:VBox width="100%" height="100%">
-			<view:OptionView width="100%" height="30"/>
-			<!--<view:ImageZoom width="100%" height="100%" backgroundColor="0xf00" backgroundAlpha="0.5"/>-->
-			<view:ImageBox width="100%" height="100%"/>
-		</mx:VBox>
+		<view:ImageTile width="100%" height="100%"/>
 		
 	</mx:Panel>
 	<view:ToolBar width="100%" height="40" x="0" y="0"/>
